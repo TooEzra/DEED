@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/prisma";
 import { headers } from "next/headers";
+import type { Prisma } from "@prisma/client";
 
 interface AuditParams {
   userId?: string | null;
@@ -25,14 +26,19 @@ export async function createAuditLog(params: AuditParams) {
         action: params.action,
         entityType: params.entityType,
         entityId: params.entityId ?? null,
-        oldValues: params.oldValues ?? undefined,
-        newValues: params.newValues ?? undefined,
+        oldValues:
+          params.oldValues == null
+            ? undefined
+            : (JSON.parse(JSON.stringify(params.oldValues)) as Prisma.InputJsonValue),
+        newValues:
+          params.newValues == null
+            ? undefined
+            : (JSON.parse(JSON.stringify(params.newValues)) as Prisma.InputJsonValue),
         ipAddress: ip,
         userAgent,
       },
     });
   } catch (error) {
-    // Never fail the main operation because of audit logging
     console.error("Failed to create audit log:", error);
   }
 }
