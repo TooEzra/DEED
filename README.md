@@ -61,8 +61,8 @@ Open http://localhost:3000
 
 | Role      | Email                          | Password      |
 |-----------|--------------------------------|---------------|
-| Admin     | admin@thedeedhostels.com       | Password123!  |
-| Caretaker | caretaker@thedeedhostels.com   | Password123!  |
+| Admin     | admin@thedeedhostels.com       | ADMIN123!  |
+| Caretaker | caretaker@thedeedhostels.com   | Caretaker123!  |
 | Tenant    | john.doe@example.com           | Password123!  |
 | Tenant    | mary.jane@example.com          | Password123!  |
 
